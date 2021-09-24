@@ -1,0 +1,8 @@
+name: ${project.name}
+version: ${project.version}
+main: ${project.group}.${project.name.toLowerCase()}.${project.name}
+api-version: 1.17
+author: Blugon
+
+commands:
+  sb:
