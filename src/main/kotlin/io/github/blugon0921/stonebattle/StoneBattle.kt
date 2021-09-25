@@ -88,9 +88,7 @@ class StoneBattle : JavaPlugin(),Listener {
             red_bar.removePlayer(players)
             blue_bar.removePlayer(players)
         }
-
         logger.info("Plugin Disable")
-        yaml.save(team_info)
     }
 
     @EventHandler

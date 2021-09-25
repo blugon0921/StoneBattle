@@ -30,15 +30,6 @@ class Blue : Listener {
 
     @EventHandler
     fun onEnable(event : ServerLoadEvent) {
-        if(!team_info.exists()) {
-            yaml.set("blue.join", Location(Bukkit.getWorld("world")!!, 0.5, 151.0, 4.5))
-            yaml.set("blue.core", Location(Bukkit.getWorld("world")!!, 0.0, 62.0, 53.0))
-            yaml.set("blue.spawn", Location(Bukkit.getWorld("world")!!, 0.5, 53.0, 41.5))
-        }
-        blue_join = yaml.getLocation("blue.join")!!
-        blue_core = yaml.getLocation("blue.core")!!
-        blue_spawn = yaml.getLocation("blue.spawn")!!
-
         blue_bar.progress = 1.0
     }
 

@@ -1,5 +1,6 @@
 package io.github.blugon0921.stonebattle.command
 
+import io.github.blugon0921.stonebattle.StoneBattle
 import io.github.blugon0921.stonebattle.StoneBattle.Companion.yaml
 import io.github.blugon0921.stonebattle.team.Blue.Companion.blueTeam
 import io.github.blugon0921.stonebattle.team.Blue.Companion.blue_bar
@@ -36,30 +37,36 @@ class Kommand : CommandExecutor,TabCompleter {
                         red_join = location
                         yaml.set("red.join", location)
                         player.sendMessage("${ChatColor.RED}RED${ChatColor.WHITE}팀의 팀 설정 진영을 설정했습니다")
+                        yaml.save(StoneBattle.team_info)
                     } else if(args[2] == "core") {
                         red_core = location
                         if(player.getTargetBlock(5) == null) return false
-                        yaml.set("red.core", player.getTargetBlock(5))
+                        yaml.set("red.core", player.getTargetBlock(5)!!.location)
                         player.sendMessage("${ChatColor.RED}RED${ChatColor.WHITE}팀의 코어를 설정했습니다")
+                        yaml.save(StoneBattle.team_info)
                     } else if(args[2] == "spawn") {
                         red_spawn = location
                         yaml.set("red.spawn", location)
                         player.sendMessage("${ChatColor.RED}RED${ChatColor.WHITE}팀의 스폰을 설정했습니다")
+                        yaml.save(StoneBattle.team_info)
                     }
                 } else if(args[1] == "blue") {
                     if(args[2] == "join") {
                         blue_join = location
                         yaml.set("blue.join", location)
                         player.sendMessage("${ChatColor.BLUE}BLUE${ChatColor.WHITE}팀의 팀 설정 진영을 설정했습니다")
+                        yaml.save(StoneBattle.team_info)
                     } else if(args[2] == "core") {
                         blue_core = location
                         if(player.getTargetBlock(5) == null) return false
-                        yaml.set("blue.core", player.getTargetBlock(5))
+                        yaml.set("blue.core", player.getTargetBlock(5)!!.location)
                         player.sendMessage("${ChatColor.BLUE}BLUE${ChatColor.WHITE}팀의 코어를 설정했습니다")
+                        yaml.save(StoneBattle.team_info)
                     } else if(args[2] == "spawn") {
                         blue_spawn = location
                         yaml.set("blue.spawn", location)
                         player.sendMessage("${ChatColor.BLUE}BLUE${ChatColor.WHITE}팀의 스폰을 설정했습니다")
+                        yaml.save(StoneBattle.team_info)
                     }
                 }
             } else if(args.size == 1 && args[0] == "start") {
