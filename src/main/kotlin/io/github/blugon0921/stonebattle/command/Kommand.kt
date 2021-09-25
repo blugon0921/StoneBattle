@@ -1,6 +1,7 @@
 package io.github.blugon0921.stonebattle.command
 
 import io.github.blugon0921.stonebattle.StoneBattle
+import io.github.blugon0921.stonebattle.StoneBattle.Companion.playing
 import io.github.blugon0921.stonebattle.StoneBattle.Companion.yaml
 import io.github.blugon0921.stonebattle.team.Blue.Companion.blueTeam
 import io.github.blugon0921.stonebattle.team.Blue.Companion.blue_bar
@@ -70,6 +71,8 @@ class Kommand : CommandExecutor,TabCompleter {
                     }
                 }
             } else if(args.size == 1 && args[0] == "start") {
+                playing = true
+
                 red_bar.progress = 1.0
                 blue_bar.progress = 1.0
 

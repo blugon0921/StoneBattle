@@ -24,6 +24,7 @@ import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.block.BlockBreakEvent
+import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.inventory.EquipmentSlot
 import org.bukkit.inventory.ItemStack
@@ -36,6 +37,8 @@ class StoneBattle : JavaPlugin(),Listener {
     companion object {
         val team_info = File("plugins/StoneBattle/TeamInfo.yml")
         val yaml : FileConfiguration = YamlConfiguration.loadConfiguration(team_info)
+
+        var playing = false
     }
 
 
@@ -108,5 +111,15 @@ class StoneBattle : JavaPlugin(),Listener {
         if(location != red_core && location != blue_core) return
         if(event.player.gameMode == GameMode.CREATIVE) return
         event.isCancelled = true
+    }
+
+
+    @EventHandler
+    fun damage(event : EntityDamageByEntityEvent) {
+        if(!playing) {
+            if(event.damager !is Player) return
+            if(event.entity !is Player) return
+            event.isCancelled = true
+        }
     }
 }

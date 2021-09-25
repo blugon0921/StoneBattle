@@ -9,6 +9,7 @@ import io.github.blugon0921.stonebattle.team.Blue.Companion.blue_spawn
 import net.kyori.adventure.text.Component
 import net.md_5.bungee.api.ChatColor
 import org.bukkit.Bukkit
+import org.bukkit.GameMode
 import org.bukkit.Location
 import org.bukkit.boss.BarColor
 import org.bukkit.boss.BarStyle
@@ -61,9 +62,11 @@ class Red : Listener {
 
         for(nbp in red_join.getNearbyEntities(0.5, 0.5, 0.5)) {
             if(nbp !is Player) return
+            if(nbp.gameMode == GameMode.SPECTATOR) return
 
             if(blueTeam.contains(nbp)) blueTeam.remove(nbp)
             if(!redTeam.contains(nbp)) redTeam.add(nbp)
+            nbp.setPlayerListName("${ChatColor.RED}${nbp.name}")
             nbp.sendActionBar(Component.text("${ChatColor.RED}Join RedTeam!"))
         }
     }

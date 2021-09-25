@@ -1,6 +1,7 @@
 package io.github.blugon0921.stonebattle.events
 
 import io.github.blugon0921.stonebattle.StoneBattle
+import io.github.blugon0921.stonebattle.StoneBattle.Companion.playing
 import io.github.blugon0921.stonebattle.team.Blue.Companion.blueTeam
 import io.github.blugon0921.stonebattle.team.Blue.Companion.blue_bar
 import io.github.blugon0921.stonebattle.team.Blue.Companion.blue_core
@@ -168,11 +169,13 @@ class Stone : Listener {
 
             //GameEnd | BLUE WIN
             if(red_bar.progress <= 0.005) {
+                playing = false
                 for (players in Bukkit.getOnlinePlayers()) {
                     players.sendTitle("게임 종료!", "${ChatColor.BLUE}BLUE", 10, 100, 10)
                     players.teleport(Location(Bukkit.getWorld("world"), 0.5, 151.0, 0.5))
                     players.inventory.setItem(EquipmentSlot.HEAD, ItemStack(Material.AIR))
                     players.gameMode = GameMode.SURVIVAL
+                    players.inventory.clear()
                     Bukkit.getScheduler().cancelTasks(JavaPlugin.getPlugin(StoneBattle::class.java))
 
                     red_bar.removePlayer(players)
@@ -203,10 +206,12 @@ class Stone : Listener {
 
             //GameEnd | RED WIN
             if(blue_bar.progress <= 0.005) {
+                playing = false
                 for (players in Bukkit.getOnlinePlayers()) {
                     players.sendTitle("게임 종료!", "${ChatColor.RED}RED", 10, 100, 10)
                     players.teleport(Location(Bukkit.getWorld("world"), 0.5, 151.0, 0.5))
                     players.gameMode = GameMode.SURVIVAL
+                    players.inventory.clear()
                     Bukkit.getScheduler().cancelTasks(JavaPlugin.getPlugin(StoneBattle::class.java))
 
                     red_bar.removePlayer(players)
