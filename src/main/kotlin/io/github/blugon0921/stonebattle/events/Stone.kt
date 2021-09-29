@@ -134,11 +134,41 @@ class Stone : Listener {
         world.playSound(location, Sound.BLOCK_STONE_BREAK, 1f, 1f)
 
         //맞은 블럭이 돌일때
-        if(block.type != Material.COBBLESTONE) return
+        if(block.type == Material.COBBLESTONE) {
+            val random = (Math.random()*100+1).toInt()
+            if(random < 10) {
+                block.breakNaturally(ItemStack(Material.NETHERITE_PICKAXE))
+            }
+        }
 
-        val random = (Math.random()*100+1).toInt()
-        if(random < 10) {
-            block.breakNaturally(ItemStack(Material.NETHERITE_PICKAXE))
+        //맞은 블럭이 흑요석일때
+        else if(block.type == Material.OBSIDIAN) {
+            world.spawnParticle(
+                Particle.LAVA,
+                location,
+                10,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                null,
+                true
+            )
+            world.spawnParticle(
+                Particle.FLAME,
+                location,
+                10,
+                0.0,
+                0.0,
+                0.0,
+                0.1,
+                null,
+                true
+            )
+            val random = (Math.random()*100+1).toInt()
+            if(random < 1) {
+                event.hitBlock!!.type = Material.LAVA
+            }
         }
     }
 
