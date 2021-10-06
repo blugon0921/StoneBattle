@@ -35,8 +35,8 @@ import java.io.File
 class StoneBattle : JavaPlugin(),Listener {
 
     companion object {
-        val team_info = File("plugins/StoneBattle/TeamInfo.yml")
-        val yaml : FileConfiguration = YamlConfiguration.loadConfiguration(team_info)
+        val team_info = File("plugins/StoneBattle/config.yml")
+        val yaml = YamlConfiguration.loadConfiguration(team_info)
 
         var playing = false
     }
@@ -58,7 +58,11 @@ class StoneBattle : JavaPlugin(),Listener {
             tabCompleter = Kommand()
         }
 
-        Bukkit.getScheduler().scheduleSyncDelayedTask(this, { yaml.save(team_info) }, 1)
+        if(!team_info.exists()) {
+            saveConfig()
+            config.options().copyDefaults(true)
+            saveConfig()
+        }
 
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, {
             for(players in Bukkit.getOnlinePlayers()) {

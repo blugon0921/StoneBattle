@@ -31,6 +31,11 @@ class Blue : Listener {
 
     @EventHandler
     fun onEnable(event : ServerLoadEvent) {
+        yaml.load(team_info)
+        blue_join = yaml.getLocation("blue.join")!!
+        blue_core = yaml.getLocation("blue.core")!!
+        blue_spawn = yaml.getLocation("blue.spawn")!!
+
         blue_bar.progress = 1.0
     }
 
