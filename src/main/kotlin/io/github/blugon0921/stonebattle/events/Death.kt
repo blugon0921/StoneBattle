@@ -1,5 +1,6 @@
 package io.github.blugon0921.stonebattle.events
 
+import io.github.blugon09.itemhelper.component
 import io.github.blugon0921.stonebattle.StoneBattle
 import io.github.blugon0921.stonebattle.team.Blue.Companion.blueTeam
 import io.github.blugon0921.stonebattle.team.Blue.Companion.blue_spawn
@@ -55,13 +56,13 @@ class Death : Listener {
 
             rp_id = Bukkit.getScheduler().scheduleSyncRepeatingTask(JavaPlugin.getPlugin(StoneBattle::class.java), {
                 if(0.0 < i) {
-                    player.sendActionBar(Component.text("리스폰까지 ${(floor(i*10))/10}초"))
+                    player.sendActionBar("리스폰까지 ${(floor(i*10))/10}초".component())
                     i -= 0.1
                 } else {
                     Bukkit.getScheduler().cancelTask(rp_id)
                     player.gameMode = GameMode.SURVIVAL
                     player.teleport(red_spawn)
-                    player.sendActionBar(Component.text("리스폰!"))
+                    player.sendActionBar("리스폰!".component())
                 }
             }, 0, 2)
         } else if(blueTeam.contains(player)) {
@@ -73,13 +74,13 @@ class Death : Listener {
 
             rp_id = Bukkit.getScheduler().scheduleSyncRepeatingTask(JavaPlugin.getPlugin(StoneBattle::class.java), {
                 if(0.0 < i) {
-                    player.sendActionBar(Component.text("리스폰까지 ${(floor(i*10))/10}초"))
+                    player.sendActionBar("리스폰까지 ${(floor(i*10))/10}초".component())
                     i -= 0.1
                 } else {
                     Bukkit.getScheduler().cancelTask(rp_id)
                     player.gameMode = GameMode.SURVIVAL
                     player.teleport(blue_spawn)
-                    player.sendActionBar(Component.text("리스폰!"))
+                    player.sendActionBar("리스폰!".component())
                 }
             }, 0, 2)
         }

@@ -1,5 +1,6 @@
 package io.github.blugon0921.stonebattle.team
 
+import io.github.blugon09.itemhelper.component
 import io.github.blugon0921.stonebattle.StoneBattle.Companion.team_info
 import io.github.blugon0921.stonebattle.StoneBattle.Companion.yaml
 import io.github.blugon0921.stonebattle.team.Blue.Companion.blueTeam
@@ -52,8 +53,8 @@ class Red : Listener {
 
             if(blueTeam.contains(nbp)) blueTeam.remove(nbp)
             if(!redTeam.contains(nbp)) redTeam.add(nbp)
-            nbp.setPlayerListName("${ChatColor.RED}${nbp.name}")
-            nbp.sendActionBar(Component.text("${ChatColor.RED}Join RedTeam!"))
+            nbp.playerListName("${ChatColor.RED}${nbp.name}".component())
+            nbp.sendActionBar("${ChatColor.RED}Join RedTeam!".component())
         }
     }
 }

@@ -1,5 +1,6 @@
 package io.github.blugon0921.stonebattle.events
 
+import io.github.blugon09.itemhelper.component
 import io.github.blugon0921.stonebattle.StoneBattle
 import io.github.blugon0921.stonebattle.StoneBattle.Companion.playing
 import io.github.blugon0921.stonebattle.team.Blue.Companion.blueTeam
@@ -9,6 +10,7 @@ import io.github.blugon0921.stonebattle.team.Red.Companion.redTeam
 import io.github.blugon0921.stonebattle.team.Red.Companion.red_bar
 import io.github.blugon0921.stonebattle.team.Red.Companion.red_core
 import net.kyori.adventure.text.Component
+import net.kyori.adventure.title.TitlePart
 import org.bukkit.*
 import org.bukkit.block.Block
 import org.bukkit.entity.LivingEntity
@@ -226,7 +228,7 @@ class Stone : Listener {
                 }
             }, 100)
             for(red in redTeam) {
-                red.sendActionBar(Component.text("${ChatColor.RED}코어가 공격받고있습니다!"))
+                red.sendActionBar("${ChatColor.RED}코어가 공격받고있습니다!".component())
             }
 
 
@@ -262,7 +264,7 @@ class Stone : Listener {
                 }
             }, 100)
             for(blue in blueTeam) {
-                blue.sendActionBar(Component.text("${ChatColor.RED}코어가 공격받고있습니다!"))
+                blue.sendActionBar("${ChatColor.RED}코어가 공격받고있습니다!".component())
             }
         }
     }

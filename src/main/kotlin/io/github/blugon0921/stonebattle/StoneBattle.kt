@@ -1,5 +1,7 @@
 package io.github.blugon0921.stonebattle
 
+import io.github.blugon09.itemhelper.ItemObject
+import io.github.blugon09.itemhelper.component
 import io.github.blugon0921.stonebattle.command.Kommand
 import io.github.blugon0921.stonebattle.events.CobbleStoneSpawn
 import io.github.blugon0921.stonebattle.events.Death
@@ -67,22 +69,12 @@ class StoneBattle : JavaPlugin(),Listener {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, {
             for(players in Bukkit.getOnlinePlayers()) {
                 if(redTeam.contains(players)) {
-                    val head = ItemStack(Material.RED_CONCRETE).let {
-                        val meta = it.itemMeta
-                        meta.displayName(Component.text(" "))
-                        it.itemMeta = meta
-                        it
-                    }
+                    val head = ItemObject(Material.RED_CONCRETE, 1, " ".component()).build()
 
                     players.inventory.setItem(EquipmentSlot.HEAD, head)
                 }
                 if(blueTeam.contains(players)) {
-                    val head = ItemStack(Material.BLUE_CONCRETE).let {
-                        val meta = it.itemMeta
-                        meta.displayName(Component.text(" "))
-                        it.itemMeta = meta
-                        it
-                    }
+                    val head = ItemObject(Material.BLUE_CONCRETE, 1, " ".component()).build()
 
                     players.inventory.setItem(EquipmentSlot.HEAD, head)
                 }
